@@ -1,0 +1,99 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url('/static/images/DukeNukem365_regenerate_this_image_38f50ec7-5bbe-4526-8c7c-7a64a01e2b0f-min.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.SS {
+  background-image: url('/static/images/DukeNukem365_regenerate_this_image_38f50ec7-5bbe-4526-8c7c-7a64a01e2b0f-min.png');
+}
+
+body.EE {
+  background-image: url('/static/images/DukeNukem365_regenerate_this_image_fefb5da4-8d79-4704-8eba-c7ede5731577-min.png');
+}
+
+body.WW {
+  background-image: url('/static/images/DukeNukem365_web_application_UI_design_for_a_poem_generator_wit_8f9c05f3-6128-4c3a-905a-a7055b675ef9-min.png');
+}
+
+body {
+  margin: 20px;
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input,
+form textarea,
+form select {
+  margin-bottom: 10px;
+}
+
+form input,
+form textarea,
+form select {
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the background color */
+  border: 1px solid #ccc; /* Add a border to the form elements */
+  border-radius: 4px; /* Add rounded corners to the form elements */
+  padding: 8px; /* Add padding to the form elements */
+}
+
+form button[type="submit"] {
+  background-color: #007bff; /* Set a background color for the submit button */
+  color: white; /* Set the text color for the submit button */
+  padding: 10px 20px; /* Add padding to the submit button */
+  border: none; /* Remove the border */
+  cursor: pointer; /* Change the cursor to indicate interactivity */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3; /* Change the background color on hover */
+}
+
+#loadingIndicator {
+  display: none;
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.form-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.poem-container {
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow effect to the container */
+  padding: 20px;
+  font-size: 18px; /* Increase the font size for the poem text */
+  line-height: 1.5; /* Adjust the line height for better readability */
+}

@@ -1,0 +1,35 @@
+<!-- poem_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poem Generator</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <h1 id="poemHeading">A Poem by</h1>
+    <form id="poemForm">
+      <label for="persona">Choose your Poet:</label>
+      <select name="persona" id="persona">
+        {% for code, nickname in personas.items() %}
+          <option value="{{ code }}">{{ nickname }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="recipient_name">Recipient Name:</label>
+      <input type="text" id="recipient_name" name="recipient_name" required><br><br>
+
+      <label for="occasion">Occasion:</label>
+      <input type="text" id="occasion" name="occasion" required><br><br>
+
+      <label for="memory">Pleasurable Memory:</label>
+      <textarea id="memory" name="memory" required></textarea><br><br>
+
+      <button id="submitButton" type="submit">Generate Poem</button>
+      <div id="loadingIndicator"></div>
+    </form>
+
+    <div id="poemContainer" class="poem-container"></div>
+
+  </body>
+</html>
