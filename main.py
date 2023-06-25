@@ -29,10 +29,7 @@ class PoemRequest(BaseModel):
         Write a poem for your friend {friend} on the occasion of {occasion}.
         Reflect upon a pleasurable memory when {memory} happend that you both
         experienced.
-        Make the poem at least 10 lines long and ensure each line ends with proper
-        punctuation.
-        Don't abruptly end the poem and ensure end rhyme in the verse.
-    """
+    """.strip()
 
     class Config:
         schema_extra = {
@@ -47,10 +44,6 @@ class PoemRequest(BaseModel):
 @app.exception_handler(personas.PersonaException)
 async def persona_exception_handler(request, exc):
     return JSONResponse(status_code=404, content={"detail": str(exc)})
-
-# @app.exception_handler(poet.PoetException)
-# async def poet_exception_handler(request, exc):
-#     return JSONResponse(status_code=500, content={"detail": str(exc)})
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(request, exc):

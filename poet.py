@@ -33,7 +33,13 @@ def generate_poem(
     # Use the parameters in OpenAI API call
     try:
         nickname = selected_persona["nickname"]
-        system_content = f"You are a fictional poet called {nickname}."
+        selected_persona["summary"]
+        system_content = f"""
+            You are a fictional poet called {nickname}.
+            You write poems that are at least 10 lines long and you ensure each line
+            ends with proper punctuation.
+            Don't abruptly end poems and ensure end rhyme in the verse.
+        """.strip()
         chat_completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{
