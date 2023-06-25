@@ -20,17 +20,44 @@ const generatePoem = async () => {
   poemContainer.innerHTML = poemResponse.poem.replaceAll("\n", "<br>");
 };
 
+const applyWhiteTranslucent = () => {
+  const elements = document.querySelectorAll("#formContainer, #backgroundStoryContainer");
+  elements.forEach(element => {
+    element.classList.add("white-translucent");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  applyWhiteTranslucent();
+
   // Get the select element and the heading element
   const selectPersona = document.getElementById('persona');
   const poemHeading = document.getElementById('poemHeading');
+  const backgroundContainer = document.getElementById('backgroundContainer')
+
+  const showPoet = (poetCode) => {
+    const backgroundStories = document.querySelectorAll("#backgroundStoryContainer .background-story");
+    backgroundStories.forEach(backgroundStory => {
+      backgroundStory.classList.remove("open");
+    });
+    const backgroundStory = document.getElementById(`backgroundStoryFor-${poetCode}`);
+    backgroundStory.classList.add("open");
+
+    const expandableSummaries = document.querySelectorAll("expandable-summary");
+    expandableSummaries.forEach((expandableSummary) => {
+      expandableSummary.removeAttribute("open");
+      console.log(expandableSummary);
+    });
+  };
 
   const onChangePersona = () => {
     // Get the selected poet's nickname and update the heading
     const poetNickname = selectPersona.options[selectPersona.selectedIndex].text;
     poemHeading.innerText = `A Poem by ${poetNickname}`;
     const poetCode = selectPersona.options[selectPersona.selectedIndex].value;
-    document.body.classList = [poetCode];
+    backgroundContainer.classList = [poetCode];
+
+    showPoet(poetCode);
   };
 
   // Add an event listener to the select element

@@ -1,0 +1,54 @@
+<!-- ExpandableContent web component -->
+<script src="/static/expandable-content.js"></script>
+<script src="/static/expandable-summary.js"></script>
+
+<!-- Example usage of ExpandableContent web component -->
+<expandable-content id="myExpandableContent">
+  <h2 slot="header">Header</h2>
+  <div slot="content">
+    <p>Line 1</p>
+    <p>Line 2</p>
+    <p>Line 3</p>
+    <p>Line 4</p>
+    <p>Line 5</p>
+    <p>Line 6</p>
+    <p>Line 7</p>
+    <p>Line 8</p>
+    <p>Line 9</p>
+  </div>
+</expandable-content>
+
+<expandable-summary id="myExpandableSummary">
+  <h2 slot="header">Header</h2>
+  <div slot="summary">
+    Listing 1 to 9
+  </div>
+  <div slot="content">
+    <p>Line 1</p>
+    <p>Line 2</p>
+    <p>Line 3</p>
+    <p>Line 4</p>
+    <p>Line 5</p>
+    <p>Line 6</p>
+    <p>Line 7</p>
+    <p>Line 8</p>
+    <p>Line 9</p>
+  </div>
+</expandable-summary>
+
+<button onClick="toggleSummary(event)">Toggle Summary</button>
+
+<script>
+  const expandableContent = document.getElementById('myExpandableContent');
+
+  expandableContent.addEventListener('toggle', () => {
+    console.log('Expandable content toggled!');
+    console.log('Is open:', expandableContent.hasAttribute('open'));
+  });
+
+  const expandableSummary = document.getElementById('myExpandableSummary');
+
+  const toggleSummary = (event) => {
+    expandableSummary.toggleOpen();
+  }
+</script>

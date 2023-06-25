@@ -5,31 +5,57 @@
     <title>Poem Generator</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <script src="/static/script.js"></script>
+    <script src="/static/expandable-summary.js"></script>
 </head>
 <body>
-    <h1 id="poemHeading">A Poem by</h1>
-    <form id="poemForm">
-      <label for="persona">Choose your Poet:</label>
-      <select name="persona" id="persona">
-        {% for code, nickname in personas.items() %}
-          <option value="{{ code }}">{{ nickname }}</option>
-        {% endfor %}
-      </select>
+  <div id="backgroundContainer">
+    <div id="backgroundImage1" class="backgroundImage"></div>
+    <div id="backgroundImage2" class="backgroundImage"></div>
+    <div id="backgroundImage3" class="backgroundImage"></div>
+  </div>
 
-      <label for="recipient_name">Recipient Name:</label>
-      <input type="text" id="recipient_name" name="recipient_name" required><br><br>
+  <div id="contentContainer">
+    <div id="formContainer">
+      <h1 id="poemHeading">A Poem by</h1>
+      <form id="poemForm">
+        <label for="persona">Choose your Poet</label>
+        <select name="persona" id="persona">
+          {% for persona in personas %}
+            <option value="{{ persona['code'] }}">{{ persona['nickname'] }}</option>
+          {% endfor %}
+        </select>
 
-      <label for="occasion">Occasion:</label>
-      <input type="text" id="occasion" name="occasion" required><br><br>
+        <label for="recipient_name">Your Friend</label>
+        <input type="text" id="recipient_name" name="recipient_name" required><br><br>
 
-      <label for="memory">Pleasurable Memory:</label>
-      <textarea id="memory" name="memory" required></textarea><br><br>
+        <label for="occasion">Occasion</label>
+        <input type="text" id="occasion" name="occasion" required><br><br>
 
-      <button id="submitButton" type="submit">Generate Poem</button>
-      <div id="loadingIndicator"></div>
-    </form>
+        <label for="memory">Pleasurable Memory</label>
+        <textarea id="memory" name="memory" required></textarea><br><br>
+
+        <button id="submitButton" type="submit">Generate Poem</button>
+        <div id="loadingIndicator"></div>
+      </form>
+    </div>
 
     <div id="poemContainer" class="poem-container"></div>
 
-  </body>
+    <div id="backgroundStoryContainer">
+      {% for persona in personas %}
+        <div id="backgroundStoryFor-{{ persona['code'] }}" class="background-story">
+          <expandable-summary>
+            <h3 slot="header">About {{ persona['nickname'] }}</h3>
+            <div slot="summary">
+              {{ persona['summary'].strip().replace('\n', '<br>')|safe }}
+            </div>
+            <div slot="content">
+              {{ persona['background_story'].strip().replace('\n', '<br>')|safe }}
+            </div>
+          </expandable-summary>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
 </html>

@@ -7,7 +7,6 @@ import personas
 
 # Load environment variables from .env file
 load_dotenv()
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_poem(
@@ -18,13 +17,15 @@ def generate_poem(
         prompt_template: str
     ) -> str:
 
+    selected_persona = personas.get_persona(persona_code)
+
     # Construct the prompt using the provided inputs
     prompt = prompt_template.format(
         recipient_name=recipient_name,
         occasion=occasion,
-        memory=memory)
-
-    selected_persona = personas.get_persona(persona_code)
+        memory=memory,
+        persona_nickname=selected_persona["nickname"],
+    )
 
     # Access persona parameters
     temperature = selected_persona["temperature"]

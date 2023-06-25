@@ -2,3 +2,5 @@ env
 .env
 *.pyc
 *.png
+*.jpg
+backup

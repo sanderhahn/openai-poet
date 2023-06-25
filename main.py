@@ -16,12 +16,13 @@ class PoemRequest(BaseModel):
     occasion: str = "Christmas"
     memory: str = "OpenAI Hackathon"
     prompt_template: str = """
-        Prompt: Write a poem for {recipient_name} on the occasion of {occasion}.
+        Prompt: You are a fictional poet called {persona_nickname}.
+        Write a poem for {recipient_name} on the occasion of {occasion}.
         Reflect upon a pleasurable memory when {memory} happend that you both
         experienced.
         Make the poem at least 10 lines long and ensure each line ends with proper
         punctuation.
-        Don't abruptly end the poem and make sure it ends with a nice rhyme.
+        Don't abruptly end the poem and ensure end rhyme in the verse.
     """
 
     class Config:
@@ -53,8 +54,14 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/")
 async def form(request: Request):
     return templates.TemplateResponse("poem_form.html", {
-        "personas": personas.generate_personas_dict(),
+        "personas": personas.personas,
         "request": request,
     })
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/test")
+async def test(request: Request):
+    return templates.TemplateResponse("test.html", {
+        "request": request,
+    })

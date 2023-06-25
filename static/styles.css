@@ -4,21 +4,146 @@ html, body {
   padding: 0;
 }
 
-body {
-  background: url('/static/images/DukeNukem365_regenerate_this_image_38f50ec7-5bbe-4526-8c7c-7a64a01e2b0f-min.png') no-repeat center center fixed;
+* {
+  line-height: 1.5em;
+}
+
+@media (min-width: 800px) {
+  #contentContainer {
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  #contentContainer {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+#backgroundContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.backgroundImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
+  background-position: center center;
 }
 
-body.SS {
-  background-image: url('/static/images/DukeNukem365_regenerate_this_image_38f50ec7-5bbe-4526-8c7c-7a64a01e2b0f-min.png');
+#backgroundImage1 {
+  animation: crossfade 15s infinite;
 }
 
-body.EE {
-  background-image: url('/static/images/DukeNukem365_regenerate_this_image_fefb5da4-8d79-4704-8eba-c7ede5731577-min.png');
+#backgroundImage2 {
+  animation: crossfade 15s infinite;
+  animation-delay: 5s; /* Delay the animation start */
 }
 
-body.WW {
-  background-image: url('/static/images/DukeNukem365_web_application_UI_design_for_a_poem_generator_wit_8f9c05f3-6128-4c3a-905a-a7055b675ef9-min.png');
+#backgroundImage3 {
+  animation: crossfade 15s infinite;
+  animation-delay: 10s; /* Delay the animation start */
+}
+
+.ww #backgroundImage1 {
+  background-image: url(/static/images/ww-0.jpg);
+}
+
+.ww #backgroundImage2 {
+  background-image: url(/static/images/ww-1.jpg);
+}
+
+.ww #backgroundImage3 {
+  background-image: url(/static/images/ww-2.jpg);
+}
+
+.ee #backgroundImage1 {
+  background-image: url(/static/images/ee-0.jpg);
+}
+
+.ee #backgroundImage2 {
+  background-image: url(/static/images/ee-1.jpg);
+}
+
+.ee #backgroundImage3 {
+  background-image: url(/static/images/ee-2.jpg);
+}
+
+.ss #backgroundImage1 {
+  background-image: url(/static/images/ss-0.jpg);
+}
+
+.ss #backgroundImage2 {
+  background-image: url(/static/images/ss-1.jpg);
+}
+
+.ss #backgroundImage3 {
+  background-image: url(/static/images/ss-2.jpg);
+}
+
+.mm #backgroundImage1 {
+  background-image: url(/static/images/mm-0.jpg);
+}
+
+.mm #backgroundImage2 {
+  background-image: url(/static/images/mm-1.jpg);
+}
+
+.mm #backgroundImage3 {
+  background-image: url(/static/images/mm-2.jpg);
+}
+
+.ll #backgroundImage1 {
+  background-image: url(/static/images/ll-0.jpg);
+}
+
+.ll #backgroundImage2 {
+  background-image: url(/static/images/ll-1.jpg);
+}
+
+.ll #backgroundImage3 {
+  background-image: url(/static/images/ll-2.jpg);
+}
+
+@keyframes crossfade {
+  0%, 100% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+}
+
+#backgroundImage.ee {
+  background-image: url('/static/images/ee-0.jpg');
+}
+
+#backgroundImage.ss {
+  background-image: url('/static/images/ss-0.jpg');
+}
+
+#backgroundImage.mm {
+  background-image: url('/static/images/mm-0.jpg');
+}
+
+#backgroundImage.ll {
+  background-image: url('/static/images/ll-0.jpg');
 }
 
 body {
@@ -92,8 +217,46 @@ form button[type="submit"]:hover {
 .poem-container {
   margin: 20px 0;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow effect to the container */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4); /* Add a shadow effect to the container */
   padding: 20px;
   font-size: 18px; /* Increase the font size for the poem text */
   line-height: 1.5; /* Adjust the line height for better readability */
+}
+
+.poem-container:empty {
+  display: none;
+}
+
+.white-translucent {
+  color: black;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 3px;
+}
+
+#formContainer {
+  margin: 1em 0;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+#backgroundStoryContainer {
+  margin: 1em 0;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+#backgroundStoryContainer .background-story {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 1s ease, opacity 1s ease;
+}
+
+#backgroundStoryContainer .background-story.open {
+  height: auto;
+  opacity: 1;
+}
+
+#backgroundStoryContainer:hover {
+  background: rgba(255, 255, 255, 0.8);
 }
