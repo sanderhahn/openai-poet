@@ -30,27 +30,26 @@ def generate_poem(
         persona_nickname=selected_persona["nickname"],
     )
 
-    # Access persona parameters
-    temperature = selected_persona["temperature"]
-    top_p = selected_persona["top_p"]
-    frequency_penalty = selected_persona["frequency_penalty"]
-    presence_penalty = selected_persona["presence_penalty"]
-
     # Use the parameters in OpenAI API call
     try:
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=200,
-            n=1,
-            stop=None,
-            temperature=temperature,
-            top_p=top_p,
-            frequency_penalty=frequency_penalty,
-            presence_penalty=presence_penalty,
-            best_of=1,
+        nickname = selected_persona["nickname"]
+        system_content = f"You are a fictional poet called {nickname}."
+        chat_completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{
+                "role": "system",
+                "content": system_content,
+            }, {
+                "role": "user",
+                "content": prompt,
+            }],
+            temperature=selected_persona["temperature"],
+            top_p=selected_persona["top_p"],
+            frequency_penalty=selected_persona["frequency_penalty"],
+            presence_penalty=selected_persona["presence_penalty"],
         )
-        poem = response.choices[0].text.strip()
+
+        poem = chat_completion.choices[0].message.content.strip()
         return poem
 
     except openai.error.AuthenticationError as e:

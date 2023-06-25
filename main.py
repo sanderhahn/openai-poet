@@ -26,7 +26,6 @@ class PoemRequest(BaseModel):
     occasion: str = "Christmas"
     memory: str = "OpenAI Hackathon"
     prompt_template: str = """
-        Prompt: You are a fictional poet called {persona_nickname}.
         Write a poem for your friend {friend} on the occasion of {occasion}.
         Reflect upon a pleasurable memory when {memory} happend that you both
         experienced.
