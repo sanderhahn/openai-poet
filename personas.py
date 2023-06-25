@@ -201,12 +201,18 @@ personas = [
    }
 ]
 
+class PersonaException(Exception):
+    pass
+
 def get_persona(persona_code):
-    return next(
-        persona
-        for persona in personas
-        if persona["code"] == persona_code
-    )
+    try:
+        return next(
+            persona
+            for persona in personas
+            if persona["code"] == persona_code
+        )
+    except StopIteration:
+        raise PersonaException(f"No such persona: {persona_code}")
 
 def get_persona_codes():
     return [persona["code"] for persona in personas]

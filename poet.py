@@ -9,9 +9,12 @@ import personas
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+class PoetException(Exception):
+    pass
+
 def generate_poem(
         persona_code: str,
-        recipient_name: str,
+        friend: str,
         occasion: str,
         memory: str,
         prompt_template: str
@@ -21,7 +24,7 @@ def generate_poem(
 
     # Construct the prompt using the provided inputs
     prompt = prompt_template.format(
-        recipient_name=recipient_name,
+        friend=friend,
         occasion=occasion,
         memory=memory,
         persona_nickname=selected_persona["nickname"],
@@ -34,19 +37,21 @@ def generate_poem(
     presence_penalty = selected_persona["presence_penalty"]
 
     # Use the parameters in OpenAI API call
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=200,
-        n=1,
-        stop=None,
-        temperature=temperature,
-        top_p=top_p,
-        frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty,
-        best_of=1,
-    )
+    try:
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=prompt,
+            max_tokens=200,
+            n=1,
+            stop=None,
+            temperature=temperature,
+            top_p=top_p,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
+            best_of=1,
+        )
+        poem = response.choices[0].text.strip()
+        return poem
 
-    poem = response.choices[0].text.strip()
-
-    return poem
+    except openai.error.AuthenticationError as e:
+        raise PoetException("OpenAI Auth Failed") from e

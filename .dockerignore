@@ -1,0 +1,11 @@
+# flyctl launch added from .gitignore
+**/env
+**/.env
+**/*.pyc
+**/*.png
+# **/*.jpg
+**/backup
+
+# flyctl launch added from .ruff_cache/.gitignore
+.ruff_cache/**/*
+fly.toml

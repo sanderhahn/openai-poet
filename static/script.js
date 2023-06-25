@@ -1,7 +1,8 @@
 const generatePoem = async () => {
   // Create JSON payload from form fields
   var payload = {
-    recipient_name: document.getElementById("recipient_name").value,
+    persona: document.getElementById("persona").value,
+    friend: document.getElementById("friend").value,
     occasion: document.getElementById("occasion").value,
     memory: document.getElementById("memory").value,
   };
@@ -15,8 +16,13 @@ const generatePoem = async () => {
     body: JSON.stringify(payload),
   });
   const poemResponse = await response.json();
-  // Render the poem response in the current page
   const poemContainer = document.getElementById("poemContainer");
+
+  if (poemResponse.error) {
+    poemContainer.innerHTML = `<pre>${JSON.stringify(poemResponse, null, 2)}`;
+    return;
+  }
+  // Render the poem response in the current page
   poemContainer.innerHTML = poemResponse.poem.replaceAll("\n", "<br>");
 };
 
@@ -70,6 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   poemForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    // Make sure that the first persona is submitted when the option isn't changed
+    // if (selectPersona.selectedIndex === 0) {
+    //   selectPersona.selectedIndex = 0;
+    // }
+
     submitButton.disabled = true;
     loadingIndicator.style.display = "block";
     poemForm.classList.add("form-disabled");
