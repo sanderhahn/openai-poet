@@ -4,3 +4,4 @@ env
 *.png
 *.jpg
 backup
+.DS_Store

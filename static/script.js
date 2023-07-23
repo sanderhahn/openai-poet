@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const expandableSummaries = document.querySelectorAll("expandable-summary");
     expandableSummaries.forEach((expandableSummary) => {
       expandableSummary.removeAttribute("open");
-      console.log(expandableSummary);
     });
   };
 
@@ -76,11 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   poemForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    // Make sure that the first persona is submitted when the option isn't changed
-    // if (selectPersona.selectedIndex === 0) {
-    //   selectPersona.selectedIndex = 0;
-    // }
 
     submitButton.disabled = true;
     loadingIndicator.style.display = "block";

@@ -33,7 +33,7 @@ class ExpandableSummary extends HTMLElement {
         </div>
       </div>
       <div class="show-more">
-        <a href="#" class="show-more-link">Show full...</a>
+        <a href="#" class="show-more-link">Show content...</a>
         <a href="#" class="collapse-link">Show summary...</a>
       </div>
     `;
