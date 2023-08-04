@@ -172,6 +172,8 @@ form select {
   border: 1px solid #ccc; /* Add a border to the form elements */
   border-radius: 4px; /* Add rounded corners to the form elements */
   padding: 8px; /* Add padding to the form elements */
+  font-family: sans-serif;
+  font-size: 10pt;
 }
 
 form button[type="submit"] {
