@@ -152,22 +152,20 @@ body {
 form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 form label {
-  margin-bottom: 5px;
 }
 
 form input,
 form textarea,
 form select {
-  margin-bottom: 10px;
 }
 
 form input,
 form textarea,
 form select {
-  margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the background color */
   border: 1px solid #ccc; /* Add a border to the form elements */
   border-radius: 4px; /* Add rounded corners to the form elements */
